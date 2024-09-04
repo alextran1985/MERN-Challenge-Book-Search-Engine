@@ -2,11 +2,13 @@ const User = require('../models/User');
 
 const resolvers = {
     Query: {
-        getUsers: async (parent, args, context) => {
-            // our usual DB request
-            const allUsers = await User.find({})
-
-            return allUsers;  // []
+        getMe: async (parent, args, context) => {
+            if(context.user) {
+                // our usual DB request
+                const found = await User.findOne({ _id: context.user._id})
+    
+                return found;  // []
+            }
         },
     //    getSingleUser: async (parent, args, context) => {
         getSingleUser: async (parent, { email }, context) => {
@@ -29,6 +31,10 @@ const resolvers = {
             );
             return vote;
           },
+        saveBook: async (parent, args, context) => {
+
+            console.log('incoming Data: ', args); // { authors: [], desc ... }
+        }
     }
 }
 
