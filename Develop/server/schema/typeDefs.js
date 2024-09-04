@@ -3,6 +3,13 @@ const typeDefs = `
         _id: ID, 
         username: String,
         email: String,
+        bookCount: String,
+        savedBooks: [Book]
+
+    }
+    type Auth {
+        token: String,
+        User: String,
     }
 
     type Book {
@@ -20,7 +27,10 @@ const typeDefs = `
     }
 
     type Mutation {
-
+        login (email: String!, password:String!): Auth
+        addUser (username: String!, email:String!, password:String!): Auth
+        saveBook ([Auth], description: String!, title: String!, bookId: String!, image: , link: String!): User
+        removebook (bookId: String!): User
     }
 `;
 
