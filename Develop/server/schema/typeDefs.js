@@ -5,8 +5,8 @@ const typeDefs = `
         email: String,
         bookCount: String,
         savedBooks: [Book]
-
     }
+
     type Auth {
         token: String,
         User: String,
